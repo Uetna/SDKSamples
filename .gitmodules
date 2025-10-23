@@ -1,0 +1,3 @@
+[submodule "RevitSDK"]
+	path = RevitSDK
+	url = https://github.com/jeremytammik/RevitSdkSamples.git
