@@ -89,7 +89,7 @@ namespace ParameterAccess
                 case StorageType.String:
                     return param.AsString() ?? "<пусто / empty>";
                 case StorageType.ElementId:
-                    return param.AsElementId().IntegerValue.ToString();
+                    return param.AsElementId().Value.ToString();
                 default:
                     return "<неизвестно / unknown>";
             }
@@ -204,8 +204,11 @@ namespace ParameterAccess
                         {
                             count++;
                             sb.AppendLine($"{count}. {definition.Name}");
-                            sb.AppendLine($"   Тип / Type: {definition.ParameterType}");
-                            sb.AppendLine($"   Группа / Group: {definition.ParameterGroup}");
+                            // Get parameter type from InternalDefinition if available
+                            if (definition is InternalDefinition internalDef)
+                            {
+                                sb.AppendLine($"   Группа / Group: {internalDef.GetGroupTypeId()}");
+                            }
                             sb.AppendLine();
                         }
                     }
