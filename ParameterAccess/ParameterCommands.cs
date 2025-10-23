@@ -204,11 +204,17 @@ namespace ParameterAccess
                         {
                             count++;
                             sb.AppendLine($"{count}. {definition.Name}");
-                            // Get parameter type from InternalDefinition if available
+                            
+                            // Display group information for InternalDefinition
                             if (definition is InternalDefinition internalDef)
                             {
-                                sb.AppendLine($"   Группа / Group: {internalDef.GetGroupTypeId()}");
+                                sb.AppendLine($"   Группа / Group ID: {internalDef.GetGroupTypeId()}");
                             }
+                            else if (definition is ExternalDefinition externalDef)
+                            {
+                                sb.AppendLine($"   Внешнее определение / External definition");
+                            }
+                            
                             sb.AppendLine();
                         }
                     }
